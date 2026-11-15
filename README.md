@@ -194,6 +194,19 @@ Cluster-level overrides, also environment variables: `SLURM_ACCOUNT`,
 `PARTITION`, `TIME_LIMIT`, `EXCLUDE`, `DEPENDENCY`, `SNAPSHOT_BASE`,
 `CONDA_BASE`, `CONDA_ENV`.
 
+> **A tuning note.** `train_sbatch.sh` requests a GPU and 96 GB but no
+> `--cpus-per-task`, so SLURM allocates one CPU, while `train.py` defaults to
+> `--dataloader_num_workers 4`. PyTorch warns about this on every run. It is
+> harmless — the first optimiser step absorbs the worker startup and later steps
+> are unaffected — but if you want it clean, either add
+> `#SBATCH --cpus-per-task=4` to `train_sbatch.sh` or pass
+> `--dataloader_num_workers 1`. The flag is not reachable through the
+> environment, so changing it means editing the `python -u train.py` call.
+>
+> Episode building, not training, dominates a short run: each split takes
+> several minutes before the first step, since the loader constructs every
+> episode from the raw annotations on the fly.
+
 > SLURM does not expand environment variables inside `#SBATCH` lines, so
 > `--account` cannot be templated there. `submit_train.sh` forwards
 > `$SLURM_ACCOUNT` on the `sbatch` command line instead; alternatively uncomment
