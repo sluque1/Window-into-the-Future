@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the thesis below."
+title: "A Window into the Future"
+abstract: >-
+  Predicts where in 3D a person will interact with objects next, as a 16x16x16
+  voxel grid over one kitchen, from a 30-second egocentric observation window.
+  A transformer encoder over per-second visual, location, 3D-object-box and gaze
+  tokens, read out by a voxel-query decoder of 4096 coordinate-conditioned
+  queries. Adapts FIction (CVPR 2025) to the HD-EPIC dataset.
+authors:
+  - family-names: "Luque Ochoa"
+    given-names: "Santiago"
+year: 2026
+license: MIT
+type: software
+repository-code: "https://github.com/sluque1/Window-into-the-Future"
+keywords:
+  - egocentric vision
+  - action anticipation
+  - future interaction prediction
+  - 3D scene understanding
+  - HD-EPIC
+preferred-citation:
+  type: thesis
+  title: "A Window into the Future"
+  authors:
+    - family-names: "Luque Ochoa"
+      given-names: "Santiago"
+  year: 2026
+  # TODO: add `institution:` (name:) and `thesis-type:` (e.g. "Master's thesis"
+  # or "PhD thesis") -- GitHub's "Cite this repository" box renders both.

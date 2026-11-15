@@ -1,0 +1,43 @@
+# FIction HD-EPIC v2 — pinned to the environment the reported results were
+# produced with (conda env `egovlpv2-pip`, Python 3.9.25).
+#
+# The torch/torchvision pins are CUDA 11.8 wheels and are NOT on plain PyPI.
+# Install them first, from PyTorch's own index:
+#
+#   conda create -n fiction-hd-epic python=3.9
+#   conda activate fiction-hd-epic
+#   pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
+#   pip install -r requirements.txt
+#
+# Any reasonably recent torch 2.x works for training; the pins record what was
+# used, not a hard floor. The one version that genuinely matters is transformers:
+# the training loop subclasses `Trainer` and relies on its 4.40-era
+# TrainingArguments surface (see trainer.py).
+
+# --- training ---
+transformers==4.40.2
+accelerate==0.30.1
+safetensors==0.7.0
+numpy==1.26.0
+pandas==2.3.3
+scipy==1.13.1
+scikit-learn==1.6.1
+tqdm==4.67.3
+
+# --- logging (optional: run with USE_WANDB=false / --use_wandb false to skip) ---
+wandb==0.25.1
+
+# --- analysis scripts (analysis/) ---
+matplotlib==3.9.4
+
+# --- preprocessing only: EgoVLPv2 feature extraction ---
+# Needed by preprocessing/extract_features.py to decode video. Not imported by
+# anything on the training path, so skip these if the features already exist.
+opencv-python==4.13.0.92
+# torchvision is also an EgoVLPv2 requirement; install it with torch, above.
+#
+# EgoVLPv2 itself is NOT a pip package. Clone the repo and point EGOVLPV2_REPO at
+# it -- see preprocessing/README.md. Its own extra requirements (timm, einops)
+# are listed there and pinned here for reference:
+timm==1.0.26
+einops==0.8.2

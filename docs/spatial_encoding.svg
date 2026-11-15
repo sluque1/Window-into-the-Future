@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1810 1000" width="1810" height="1000" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a2a30"/></marker>
+    <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d81b7a"/></marker>
+    <marker id="ahs" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#7a7a84"/></marker>
+  </defs>
+  <style>
+    .panel { fill:#f4f4f6; }
+    .plot  { fill:#fdfdfd; stroke:#dcdce1; stroke-width:1; }
+    .box   { fill:#e9e9ec; stroke:#4a4a52; stroke-width:1.2; }
+    .inner { fill:#fdfdfd; stroke:#6a6a74; stroke-width:1.1; }
+    .new   { fill:#fde7f0; stroke:#d81b7a; stroke-width:2.4; }
+    .newin { fill:#fdf3f8; stroke:#d81b7a; stroke-width:1.5; }
+    .arw   { fill:none; stroke:#2a2a30; stroke-width:1.7; marker-end:url(#ah); }
+    .arwp  { fill:none; stroke:#d81b7a; stroke-width:1.9; marker-end:url(#ahp); }
+    .arws  { fill:none; stroke:#7a7a84; stroke-width:1.3; marker-end:url(#ahs); }
+    .grid  { stroke:#dcdce1; stroke-width:1; fill:none; }
+    .ser   { fill:none; stroke-width:2.4; stroke-linejoin:round; stroke-linecap:round; }
+    text   { fill:#17171b; }
+    .t   { font-size:12px; }
+    .ts  { font-size:11px; }
+    .tt  { font-size:10px; }
+    .tb  { font-size:12px; font-weight:bold; }
+    .col { font-size:16px; font-weight:bold; }
+    .pk  { fill:#b3145f; font-size:11.5px; }
+    .pkb { fill:#b3145f; font-size:12px; font-weight:bold; }
+    .it  { font-size:11px; font-style:italic; fill:#55555e; }
+    .mono{ font-family:"DejaVu Sans Mono", Consolas, monospace; font-size:11.5px; }
+    .monob{ font-family:"DejaVu Sans Mono", Consolas, monospace; font-size:12px; font-weight:bold; }
+  </style>
+<rect x="0" y="0" width="1810" height="1000" fill="#ffffff"/>
+<text x="40.0" y="48.0" class="col" font-size="26" text-anchor="start">Spatial position encoding  —  --position_encoding fourier</text>
+<text x="40.0" y="72.0" class="it" text-anchor="start">model.py  _spatial_encoding() / _voxel_pos_embedding()  ·  one learned Fourier code of a voxel centre, shared by every token that has a position — and by the decoder’s 4096 queries</text>
+<rect x="20" y="118" width="640" height="334" class="panel"/>
+<text x="40" y="108" class="col">1.  The quantity  —  the voxel’s normalised centre</text>
+<text x="40.0" y="146.0" class="monob" text-anchor="start">coords = (ijk − 0.5) / 16     ijk = 1 … 16 per axis,  0 = pad</text>
+<text x="40.0" y="164.0" class="it" text-anchor="start">Normalised, not metres: every recording has its own Aria world frame with</text>
+<text x="40.0" y="180.0" class="it" text-anchor="start">an arbitrary origin, and the splits are participant-level.</text>
+<rect x="56.0" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="200.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="212.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="225.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="237.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="250.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="263.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="275.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="288.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="300.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="313.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="326.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="338.6" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="351.2" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="363.8" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="376.4" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="56.0" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="68.6" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="81.2" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="93.8" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="106.4" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="119.0" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="131.6" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="156.8" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="169.4" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="182.0" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="194.6" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="207.2" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="219.8" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="232.4" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="245.0" y="389.0" width="12.6" height="12.6" fill="#fdfdfd" stroke="#dcdce1" stroke-width="0.7"/>
+<rect x="144.2" y="300.8" width="12.6" height="12.6" fill="#d81b7a" stroke="#b3145f" stroke-width="1.4"/>
+<rect x="56" y="200" width="201.6" height="201.6" fill="none" stroke="#7a7a84" stroke-width="1.2"/>
+<text x="50.0" y="310.8" class="tt" text-anchor="end" fill="#55555e">j=9</text>
+<text x="150.5" y="194.0" class="tt" text-anchor="middle" fill="#55555e">i=8</text>
+<text x="56.0" y="415.6" class="tt" text-anchor="start" fill="#55555e">1</text>
+<text x="257.6" y="415.6" class="tt" text-anchor="end" fill="#55555e">16</text>
+<path class="arwp" d="M159.8,306.8 H282"/>
+<text x="290.0" y="214.0" class="mono" text-anchor="start" fill="#b3145f">(8, 9, k)  →  (0.469, 0.531, …)</text>
+<rect x="290.0" y="228.0" width="360.0" height="66.0" class="newin"/>
+<text x="302.0" y="248.0" class="tb" text-anchor="start">One convention, two call sites</text>
+<text x="302.0" y="266.0" class="mono" text-anchor="start">model     (ijk − 0.5)/16</text>
+<text x="302.0" y="284.0" class="mono" text-anchor="start">decoder   (ijk₀ + 0.5)/16   ← must stay equal</text>
+<rect x="290.0" y="306.0" width="360.0" height="98.0" class="inner"/>
+<text x="302.0" y="326.0" class="tb" text-anchor="start">Pad slots take a different branch</text>
+<text x="302.0" y="346.0" class="ts" text-anchor="start">any axis == 0  →  spatial_pad_embedding, a</text>
+<text x="302.0" y="362.0" class="ts" text-anchor="start">learned vector. (0 − 0.5)/16 would land a third of</text>
+<text x="302.0" y="378.0" class="ts" text-anchor="start">a cell outside the corner — i.e. on top of voxel 1,</text>
+<text x="302.0" y="394.0" class="ts" text-anchor="start">reading as “a box on the floor” instead of “no box”.</text>
+<text x="40.0" y="426.0" class="ts" text-anchor="start" fill="#55555e">It encodes the same cell centre the index tables encoded: this adds continuity, not resolution.</text>
+<text x="40.0" y="442.0" class="ts" text-anchor="start" fill="#55555e">_nearest_voxel_ijk still snaps the box centre first — sub-voxel position is change B2, unbuilt.</text>
+<rect x="680" y="118" width="550" height="334" class="panel"/>
+<text x="700" y="108" class="col">2.  The code  —  the three axes mix before cos/sin</text>
+<text x="700.0" y="144.0" class="mono" text-anchor="start" fill="#55555e">coords   […, 3]      from panel 1</text>
+<rect x="710.0" y="154.0" width="490.0" height="44.0" class="new"/>
+<text x="724.0" y="181.0" class="monob" text-anchor="start">proj = coords @ spatial_W_r.T</text>
+<text x="1186.0" y="181.0" class="mono" text-anchor="end" fill="#b3145f">[…, 384]</text>
+<text x="700.0" y="216.0" class="ts" text-anchor="start" fill="#b3145f">spatial_W_r  —  nn.Parameter(384, 3),  1,152 parameters.  Per-axis init</text>
+<text x="700.0" y="232.0" class="ts" text-anchor="start" fill="#b3145f">std (sx, sy, sz) from --voxel_query_fourier_scale (one value, or three).</text>
+<path class="arwp" d="M955,198 V254"/>
+<rect x="710.0" y="254.0" width="490.0" height="46.0" class="inner"/>
+<text x="724.0" y="273.0" class="monob" text-anchor="start">cat([proj.cos(), proj.sin()], −1)</text>
+<text x="1186.0" y="273.0" class="mono" text-anchor="end" fill="#55555e">[…, 768]</text>
+<text x="724.0" y="291.0" class="ts" text-anchor="start" fill="#55555e">cos(w₁x + w₂y + w₃z)  —  joint in position, not a per-axis sum</text>
+<path class="arw" d="M955,300 V322"/>
+<rect x="710.0" y="322.0" width="490.0" height="44.0" class="inner"/>
+<text x="724.0" y="342.0" class="mono" text-anchor="start">÷ √(H/2)        → row norm exactly 1</text>
+<text x="724.0" y="358.0" class="mono" text-anchor="start">× spatial_gain  → init √(3·768) = 48.0</text>
+<rect x="700.0" y="376.0" width="510.0" height="70.0" class="newin"/>
+<text x="712.0" y="396.0" class="tb" text-anchor="start">Why the init std is per axis</text>
+<text x="712.0" y="414.0" class="ts" text-anchor="start">The cells are not cubic. Measured over the nine production grids, the z cell is</text>
+<text x="712.0" y="430.0" class="ts" text-anchor="start">13.3–14.6 cm in every kitchen while x runs 16.8–41.7 and y 12.6–46.6 cm.</text>
+<rect x="1250" y="118" width="540" height="334" class="panel"/>
+<text x="1270" y="108" class="col">3.  Replace or add, and who receives it</text>
+<rect x="1266.0" y="138.0" width="250.0" height="72.0" class="new"/>
+<text x="1280.0" y="160.0" class="tb" text-anchor="start">--position_encoding_mode</text>
+<text x="1280.0" y="180.0" class="monob" text-anchor="start" fill="#b3145f">replace   (default)</text>
+<text x="1280.0" y="198.0" class="ts" text-anchor="start" fill="#55555e">the position IS the code</text>
+<rect x="1526.0" y="138.0" width="248.0" height="72.0" class="newin"/>
+<text x="1540.0" y="160.0" class="monob" text-anchor="start">add</text>
+<text x="1540.0" y="180.0" class="mono" text-anchor="start">tables + code</text>
+<text x="1540.0" y="198.0" class="ts" text-anchor="start" fill="#55555e">keeps non-smooth structure</text>
+<rect x="1266.0" y="224.0" width="508.0" height="28.0" class="newin"/>
+<path d="M1278,237 l6,6 l11,-13" fill="none" stroke="#d81b7a" stroke-width="2.4" stroke-linecap="round"/>
+<text x="1304.0" y="243.0" class="monob" text-anchor="start">obb centres</text>
+<text x="1470.0" y="243.0" class="ts" text-anchor="start" fill="#55555e">the fused box’s nearest voxel</text>
+<rect x="1266.0" y="255.0" width="508.0" height="28.0" class="newin"/>
+<path d="M1278,268 l6,6 l11,-13" fill="none" stroke="#d81b7a" stroke-width="2.4" stroke-linecap="round"/>
+<text x="1304.0" y="274.0" class="monob" text-anchor="start">env voxels</text>
+<text x="1470.0" y="274.0" class="ts" text-anchor="start" fill="#55555e">under --env_positional_encoding</text>
+<rect x="1266.0" y="286.0" width="508.0" height="28.0" class="newin"/>
+<path d="M1278,299 l6,6 l11,-13" fill="none" stroke="#d81b7a" stroke-width="2.4" stroke-linecap="round"/>
+<text x="1304.0" y="305.0" class="monob" text-anchor="start">trajectory</text>
+<text x="1470.0" y="305.0" class="ts" text-anchor="start" fill="#55555e">start and end voxel</text>
+<rect x="1266.0" y="317.0" width="508.0" height="28.0" class="newin"/>
+<path d="M1278,330 l6,6 l11,-13" fill="none" stroke="#d81b7a" stroke-width="2.4" stroke-linecap="round"/>
+<text x="1304.0" y="336.0" class="monob" text-anchor="start">location</text>
+<text x="1470.0" y="336.0" class="ts" text-anchor="start" fill="#55555e">only under --location_tokens joint</text>
+<rect x="1266.0" y="348.0" width="508.0" height="28.0" class="newin"/>
+<path d="M1278,361 l6,6 l11,-13" fill="none" stroke="#d81b7a" stroke-width="2.4" stroke-linecap="round"/>
+<text x="1304.0" y="367.0" class="monob" text-anchor="start">decoder queries</text>
+<text x="1470.0" y="367.0" class="ts" text-anchor="start" fill="#55555e">all 4096, one per voxel</text>
+<rect x="1266.0" y="379.0" width="508.0" height="28.0" class="box"/>
+<path d="M1280,387 l11,11 M1291,387 l-11,11" fill="none" stroke="#7a7a84" stroke-width="1.9" stroke-linecap="round"/>
+<text x="1304.0" y="398.0" class="mono" text-anchor="start">gaze</text>
+<text x="1470.0" y="398.0" class="ts" text-anchor="start" fill="#55555e">three per-axis streams: a token is a scalar</text>
+<rect x="1266.0" y="410.0" width="508.0" height="28.0" class="box"/>
+<path d="M1280,418 l11,11 M1291,418 l-11,11" fill="none" stroke="#7a7a84" stroke-width="1.9" stroke-linecap="round"/>
+<text x="1304.0" y="429.0" class="mono" text-anchor="start">location (axis)</text>
+<text x="1470.0" y="429.0" class="ts" text-anchor="start" fill="#55555e">same — 3 × 30 scalars, no coordinate</text>
+<text x="1266.0" y="442.0" class="ts" text-anchor="start" fill="#55555e">Only tokens carrying a full (i, j, k).  A type marker keeps them apart.</text>
+<rect x="20" y="482" width="740" height="480" class="panel"/>
+<text x="40" y="472" class="col">4.  Why a Fourier code and not the index tables</text>
+<text x="40.0" y="508.0" class="ts" text-anchor="start" fill="#55555e">cosine similarity between two voxel codes as they move apart along one axis</text>
+<rect x="110.0" y="524.0" width="600.0" height="262.0" class="plot"/>
+<path class="grid" d="M110,786.0 H710"/>
+<text x="102.0" y="790.0" class="tt" text-anchor="end" fill="#55555e">0.0</text>
+<path class="grid" d="M110,733.6 H710"/>
+<text x="102.0" y="737.6" class="tt" text-anchor="end" fill="#55555e">0.2</text>
+<path class="grid" d="M110,681.2 H710"/>
+<text x="102.0" y="685.2" class="tt" text-anchor="end" fill="#55555e">0.4</text>
+<path class="grid" d="M110,628.8 H710"/>
+<text x="102.0" y="632.8" class="tt" text-anchor="end" fill="#55555e">0.6</text>
+<path class="grid" d="M110,576.4 H710"/>
+<text x="102.0" y="580.4" class="tt" text-anchor="end" fill="#55555e">0.8</text>
+<path class="grid" d="M110,524.0 H710"/>
+<text x="102.0" y="528.0" class="tt" text-anchor="end" fill="#55555e">1.0</text>
+<path class="grid" d="M110.0,524 V786"/>
+<text x="110.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">0</text>
+<path class="grid" d="M230.0,524 V786"/>
+<text x="230.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">3</text>
+<path class="grid" d="M350.0,524 V786"/>
+<text x="350.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">6</text>
+<path class="grid" d="M470.0,524 V786"/>
+<text x="470.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">9</text>
+<path class="grid" d="M590.0,524 V786"/>
+<text x="590.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">12</text>
+<path class="grid" d="M710.0,524 V786"/>
+<text x="710.0" y="802.0" class="tt" text-anchor="middle" fill="#55555e">15</text>
+<text x="410.0" y="822.0" class="ts" text-anchor="middle" fill="#55555e">cells apart along one axis   (16 cells spans the whole kitchen)</text>
+<text x="62.0" y="655.0" class="ts" text-anchor="middle" fill="#55555e" transform="rotate(-90 62 655.0)">cos sim</text>
+<path class="ser" d="M110.0,524.0 L150.0,611.3 L190.0,611.3 L230.0,611.3 L270.0,611.3 L310.0,611.3 L350.0,611.3 L390.0,611.3 L430.0,611.3 L470.0,611.3 L510.0,611.3 L550.0,611.3 L590.0,611.3 L630.0,611.3 L670.0,611.3 L710.0,611.3" stroke="#2a2a30"/>
+<circle cx="110.0" cy="524.0" r="3.3" fill="#2a2a30"/>
+<circle cx="150.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="190.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="230.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="270.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="310.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="350.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="390.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="430.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="470.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="510.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="550.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="590.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="630.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="670.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<circle cx="710.0" cy="611.3" r="3.3" fill="#2a2a30"/>
+<path class="ser" d="M110.0,524.0 L150.0,570.5 L190.0,666.0 L230.0,740.8 L270.0,774.5 L310.0,784.0 L350.0,785.8 L390.0,786.0 L430.0,786.0 L470.0,786.0 L510.0,786.0 L550.0,786.0 L590.0,786.0 L630.0,786.0 L670.0,786.0 L710.0,786.0" stroke="#d81b7a"/>
+<circle cx="110.0" cy="524.0" r="3.3" fill="#d81b7a"/>
+<circle cx="150.0" cy="570.5" r="3.3" fill="#d81b7a"/>
+<circle cx="190.0" cy="666.0" r="3.3" fill="#d81b7a"/>
+<circle cx="230.0" cy="740.8" r="3.3" fill="#d81b7a"/>
+<circle cx="270.0" cy="774.5" r="3.3" fill="#d81b7a"/>
+<circle cx="310.0" cy="784.0" r="3.3" fill="#d81b7a"/>
+<circle cx="350.0" cy="785.8" r="3.3" fill="#d81b7a"/>
+<circle cx="390.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="430.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="470.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="510.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="550.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="590.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="630.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="670.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<circle cx="710.0" cy="786.0" r="3.3" fill="#d81b7a"/>
+<text x="198.0" y="599.3" class="tb" text-anchor="start" fill="#2a2a30">axis_sum  —  flat at exactly 2/3</text>
+<text x="198.0" y="627.3" class="tt" text-anchor="start" fill="#7a7a84">Only one of the three terms changes, and two rows (eₓ[8], e_y[8]) are</text>
+<text x="198.0" y="640.3" class="tt" text-anchor="start" fill="#7a7a84">shared outright.  The third pair, e_z[8] and e_z[9], is independent, so it</text>
+<text x="198.0" y="653.3" class="tt" text-anchor="start" fill="#7a7a84">contributes nothing to the dot product:  sim = 2H / 3H = 2/3, whether the</text>
+<text x="198.0" y="666.3" class="tt" text-anchor="start" fill="#7a7a84">cells are 1 apart or 15.  No smoothness is available to it.</text>
+<text x="246.0" y="728.8" class="tb" text-anchor="start" fill="#b3145f">fourier, scale 10</text>
+<text x="246.0" y="743.8" class="tt" text-anchor="start" fill="#7a7a84">1/e at 2.3 cells</text>
+<text x="410.0" y="546.0" class="mono" text-anchor="start" fill="#55555e">sim(d) = exp( − s²d² / 2·16² )</text>
+<rect x="40.0" y="836.0" width="700.0" height="114.0" class="newin"/>
+<text x="54.0" y="856.0" class="tb" text-anchor="start">The index tables are a 48-vector vocabulary for 4096 voxels:  eₓ[i] + e_y[j] + e_z[k].</text>
+<text x="54.0" y="876.0" class="ts" text-anchor="start">DISCRETE  —  eₓ[4] and eₓ[5] are independent 768-vectors with no prior that they are adjacent, so</text>
+<text x="54.0" y="892.0" class="ts" text-anchor="start">neighbouring voxels start out as unrelated as distant ones.</text>
+<text x="54.0" y="912.0" class="ts" text-anchor="start">ADDITIVE  —  every voxel’s code decomposes per axis, so no cell can be made distinctive without</text>
+<text x="54.0" y="928.0" class="ts" text-anchor="start">smearing the same signal across its whole row, column and layer.</text>
+<rect x="780" y="482" width="460" height="480" class="panel"/>
+<text x="800" y="472" class="col">5.  Near vs far, measured</text>
+<text x="800.0" y="508.0" class="ts" text-anchor="start" fill="#55555e">distance between the codes of voxel (8,8,8) and …</text>
+<text x="800.0" y="536.0" class="tb" text-anchor="start" fill="#2a2a30">axis_sum</text>
+<text x="920.0" y="558.0" class="ts" text-anchor="end" fill="#55555e">(8,8,9)  1 cell</text>
+<rect x="930" y="546" width="117.6" height="17" rx="3" fill="#2a2a30" opacity="1"/>
+<text x="1055.6" y="559.0" class="mono" text-anchor="start" fill="#55555e">39.2</text>
+<text x="920.0" y="584.0" class="ts" text-anchor="end" fill="#55555e">(2,14,3)  far</text>
+<rect x="930" y="572" width="203.6" height="17" rx="3" fill="#2a2a30" opacity="0.42"/>
+<text x="1141.6" y="585.0" class="mono" text-anchor="start" fill="#55555e">67.9</text>
+<text x="920.0" y="614.0" class="ts" text-anchor="end" fill="#55555e">near / far</text>
+<text x="936.0" y="614.0" class="monob" text-anchor="start" fill="#2a2a30">0.577</text>
+<text x="800.0" y="634.0" class="tb" text-anchor="start" fill="#d81b7a">fourier</text>
+<text x="920.0" y="656.0" class="ts" text-anchor="end" fill="#55555e">(8,8,9)  1 cell</text>
+<rect x="930" y="644" width="85.8" height="17" rx="3" fill="#d81b7a" opacity="1"/>
+<text x="1023.8" y="657.0" class="mono" text-anchor="start" fill="#55555e">28.6</text>
+<text x="920.0" y="682.0" class="ts" text-anchor="end" fill="#55555e">(2,14,3)  far</text>
+<rect x="930" y="670" width="203.6" height="17" rx="3" fill="#d81b7a" opacity="0.42"/>
+<text x="1141.6" y="683.0" class="mono" text-anchor="start" fill="#55555e">67.9</text>
+<text x="920.0" y="712.0" class="ts" text-anchor="end" fill="#55555e">near / far</text>
+<text x="936.0" y="712.0" class="monob" text-anchor="start" fill="#d81b7a">0.421</text>
+<path d="M930,542 V712" stroke="#7a7a84" stroke-width="1"/>
+<text x="930.0" y="726.0" class="tt" text-anchor="start" fill="#55555e">distance   0</text>
+<text x="1140.0" y="726.0" class="tt" text-anchor="middle" fill="#55555e">70</text>
+<rect x="800.0" y="758.0" width="424.0" height="78.0" class="newin"/>
+<text x="814.0" y="776.0" class="tb" text-anchor="start">axis_sum cannot go below its floor</text>
+<text x="814.0" y="794.0" class="ts" text-anchor="start">√(2/6) = 0.577.  p − p′ differences two independent rows when</text>
+<text x="814.0" y="810.0" class="ts" text-anchor="start">one axis differs and six when all three do — so the ratio is fixed</text>
+<text x="814.0" y="826.0" class="ts" text-anchor="start">by the construction, not by anything the model can learn.</text>
+<text x="800.0" y="738.0" class="tt" text-anchor="start" fill="#7a7a84">at init, scale 10.  smoke_position_encoding.py test 5</text>
+<text x="800.0" y="750.0" class="tt" text-anchor="start" fill="#7a7a84">measures 0.570 and 0.408 on its own init.</text>
+<rect x="800.0" y="846.0" width="424.0" height="104.0" class="inner"/>
+<text x="814.0" y="866.0" class="tb" text-anchor="start">The gain is not decoration</text>
+<text x="814.0" y="886.0" class="ts" text-anchor="start">The legacy ÷√D pinned the query at norm 0.707 against</text>
+<text x="814.0" y="902.0" class="ts" text-anchor="start">|attn_out| ≈ 1.11, where axis_sum sits at 55.7 — a 0.6:1</text>
+<text x="814.0" y="918.0" class="ts" text-anchor="start">query:evidence regime against a 50:1 one. Init √(3H) = 48.0</text>
+<text x="814.0" y="934.0" class="ts" text-anchor="start">is the norm of the three index rows it replaces.</text>
+<rect x="1260" y="482" width="530" height="480" class="panel"/>
+<text x="1280" y="472" class="col">6.  The point is the sharing</text>
+<rect x="1300.0" y="512.0" width="450.0" height="62.0" class="new"/>
+<text x="1525.0" y="537.0" class="monob" text-anchor="middle" fill="#b3145f">spatial_W_r   +   spatial_gain</text>
+<text x="1525.0" y="557.0" class="ts" text-anchor="middle" fill="#55555e">one parameter set, owned by the model</text>
+<path d="M1316,574 V798" stroke="#d81b7a" stroke-width="1.9" fill="none"/>
+<rect x="1336.0" y="600.0" width="438.0" height="38.0" class="newin"/>
+<text x="1350.0" y="617.0" class="monob" text-anchor="start">obb tokens</text>
+<text x="1350.0" y="632.0" class="tt" text-anchor="start" fill="#55555e">centre code + class + volume + marker</text>
+<path class="arwp" d="M1316,622 H1332"/>
+<rect x="1336.0" y="644.0" width="438.0" height="38.0" class="newin"/>
+<text x="1350.0" y="661.0" class="monob" text-anchor="start">env tokens</text>
+<text x="1350.0" y="676.0" class="tt" text-anchor="start" fill="#55555e">the voxel’s own centre</text>
+<path class="arwp" d="M1316,666 H1332"/>
+<rect x="1336.0" y="688.0" width="438.0" height="38.0" class="newin"/>
+<text x="1350.0" y="705.0" class="monob" text-anchor="start">trajectory tokens</text>
+<text x="1350.0" y="720.0" class="tt" text-anchor="start" fill="#55555e">start and end voxel</text>
+<path class="arwp" d="M1316,710 H1332"/>
+<rect x="1336.0" y="732.0" width="438.0" height="38.0" class="newin"/>
+<text x="1350.0" y="749.0" class="monob" text-anchor="start">location (joint)</text>
+<text x="1350.0" y="764.0" class="tt" text-anchor="start" fill="#55555e">one token per second + marker</text>
+<path class="arwp" d="M1316,754 H1332"/>
+<rect x="1336.0" y="776.0" width="438.0" height="38.0" class="new"/>
+<text x="1350.0" y="793.0" class="monob" text-anchor="start">decoder queries × 4096</text>
+<text x="1350.0" y="808.0" class="tt" text-anchor="start" fill="#55555e">the bound method itself, not a copy</text>
+<path class="arwp" d="M1316,798 H1332"/>
+<rect x="1280.0" y="838.0" width="496.0" height="112.0" class="newin"/>
+<text x="1294.0" y="858.0" class="tb" text-anchor="start">A query and an input token at one voxel carry the identical vector —</text>
+<text x="1294.0" y="874.0" class="tb" text-anchor="start">by construction, not because two call sites agree on a formula.</text>
+<text x="1294.0" y="896.0" class="ts" text-anchor="start">The decoder is handed _voxel_pos_embedding itself. Before this flag,</text>
+<text x="1294.0" y="912.0" class="ts" text-anchor="start">--voxel_query_type fourier gave the queries a private W_r while every input</text>
+<text x="1294.0" y="928.0" class="ts" text-anchor="start">token kept the tables: two unrelated vocabularies, not one shared code.</text>
+</svg>

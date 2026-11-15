@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1810 920" width="1810" height="920"
+     font-family="Helvetica, Arial, sans-serif">
+
+  <defs>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2a2a30"/>
+    </marker>
+    <marker id="ahp" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d81b7a"/>
+    </marker>
+  </defs>
+
+  <style>
+    .panel  { fill:#f4f4f6; }
+    .box    { fill:#e9e9ec; stroke:#4a4a52; stroke-width:1.2; }
+    .inner  { fill:#fdfdfd; stroke:#6a6a74; stroke-width:1.1; }
+    .new    { fill:#fde7f0; stroke:#d81b7a; stroke-width:2.6; }
+    .newin  { fill:#fdf3f8; stroke:#d81b7a; stroke-width:1.6; }
+    .arw    { fill:none; stroke:#2a2a30; stroke-width:1.7; marker-end:url(#ah); }
+    .arwp   { fill:none; stroke:#d81b7a; stroke-width:1.9; marker-end:url(#ahp); }
+    .dash   { stroke-dasharray:6 4; }
+    text    { fill:#17171b; }
+    .t      { font-size:12px; }
+    .ts     { font-size:11px; }
+    .tb     { font-size:12px; font-weight:bold; }
+    .col    { font-size:16px; font-weight:bold; }
+    .pk     { fill:#b3145f; font-size:11.5px; }
+    .pkb    { fill:#b3145f; font-size:12px; font-weight:bold; }
+    .it     { font-size:11px; font-style:italic; fill:#55555e; }
+  </style>
+
+  <rect x="0" y="0" width="1810" height="920" fill="#ffffff"/>
+
+  <!-- ================= title + legend ================= -->
+  <text x="40" y="50" font-size="26" font-weight="bold">Voxel-Query Architecture — new components highlighted</text>
+
+  <rect x="1540" y="20" width="260" height="62" fill="#ffffff" stroke="#9a9aa4" stroke-width="1"/>
+  <rect x="1554" y="32" width="26" height="15" class="new"/>
+  <text x="1590" y="44" class="t">new components</text>
+  <rect x="1554" y="56" width="26" height="15" class="box"/>
+  <text x="1590" y="68" class="t">existing components</text>
+
+  <!-- ================= column panels ================= -->
+  <rect class="panel" x="20"   y="118" width="670" height="674"/>
+  <rect class="panel" x="710"  y="118" width="200" height="662"/>
+  <rect class="panel" x="930"  y="118" width="280" height="662"/>
+  <rect class="panel" x="1230" y="118" width="570" height="772"/>
+
+  <text x="40"   y="104" class="col">1.  Inputs</text>
+  <text x="730"  y="104" class="col">2.  Sequence</text>
+  <text x="950"  y="104" class="col">3.  Encoder</text>
+  <text x="1250" y="104" class="col">4.  Voxel-Query Decoder</text>
+
+  <!-- ================= COLUMN 1 : lanes ================= -->
+
+  <!-- Lane A : video -->
+  <rect class="box" x="100" y="199" width="420" height="72"/>
+  <text x="112" y="222" class="tb">A.  Video,</text>
+  <text x="112" y="240" class="t">30 tokens</text>
+  <rect class="inner" x="250" y="207" width="258" height="56"/>
+  <text x="379" y="230" class="t" text-anchor="middle">token = Linear(4096 → 768)</text>
+  <text x="379" y="250" class="ts" text-anchor="middle" fill="#55555e">[ no position embedding ]</text>
+
+  <!-- Lane B : location (location_tokens=joint, what every current run uses) -->
+  <rect class="box" x="100" y="305" width="420" height="96"/>
+  <text x="112" y="330" class="tb">B.  Location,</text>
+  <text x="112" y="348" class="t">30 tokens</text>
+  <text x="370" y="330" class="t" text-anchor="middle">token = pos(i,j,k)</text>
+  <text x="370" y="349" class="ts" text-anchor="middle" fill="#55555e">( --location_tokens joint: ONE token per second )</text>
+  <rect class="inner" x="300" y="360" width="150" height="28"/>
+  <text x="375" y="379" class="ts" text-anchor="middle">single token (sum)</text>
+
+  <!-- Lane C : env grid -->
+  <rect class="box" x="100" y="408" width="420" height="92"/>
+  <text x="112" y="432" class="tb">C.  Env grid,</text>
+  <text x="112" y="450" class="t">4096 tokens</text>
+  <text x="112" y="486" class="it">one or the other</text>
+  <text x="370" y="432" class="t" text-anchor="middle">token = class[c]</text>
+  <text x="370" y="451" class="ts" text-anchor="middle" fill="#55555e">( + pos(i,j,k),  optional )</text>
+  <rect class="inner" x="300" y="462" width="150" height="28"/>
+  <text x="375" y="481" class="ts" text-anchor="middle">single token (sum)</text>
+
+  <!-- Lane D : obb -->
+  <rect class="box" x="100" y="516" width="420" height="110"/>
+  <text x="112" y="540" class="tb">D.  OBB,</text>
+  <text x="112" y="558" class="t">≤ 250 tokens</text>
+  <text x="112" y="596" class="it">one or the other</text>
+  <text x="370" y="540" class="t" text-anchor="middle">token = pos(i,j,k)</text>
+  <text x="370" y="559" class="t" text-anchor="middle">+ class[c] + volume[v]</text>
+  <rect class="inner" x="300" y="574" width="150" height="28"/>
+  <text x="375" y="593" class="ts" text-anchor="middle">single token (sum)</text>
+
+  <!-- shared spatial encoding function (NEW usage) -->
+  <rect class="new" x="100" y="660" width="420" height="90"/>
+  <text x="310" y="685" class="tb" text-anchor="middle">_voxel_pos_embedding(i,j,k), shared</text>
+  <text x="310" y="707" class="ts" text-anchor="middle">tables (nn.Embedding(17,768)) if --position_encoding none;</text>
+  <text x="310" y="723" class="ts" text-anchor="middle">Fourier code (spatial_W_r + gain) if fourier -- current production</text>
+  <text x="310" y="743" class="it" text-anchor="middle">not a sum of 3 tables under fourier -- W_r mixes all 3 axes first</text>
+
+  <!-- fan-out : tables -> B, C, D  (nested left channels, no crossings) -->
+  <path class="arwp" d="M100,695 H64 V374 H96"/>
+  <text x="60" y="368" class="pk" text-anchor="end">summed</text>
+
+  <path class="arwp dash" d="M100,695 H76 V454 H96"/>
+  <text x="72" y="448" class="pk" text-anchor="end">summed, opt.</text>
+
+  <path class="arwp" d="M100,695 H88 V571 H96"/>
+  <text x="84" y="565" class="pk" text-anchor="end">summed</text>
+
+  <!-- fan-out : tables -> q  (the new reuse) -->
+  <path class="arwp" d="M520,695 H1215 V223 H1256"/>
+  <text x="820" y="686" class="pkb">pos(i,j,k) + query_marker</text>
+
+  <!-- time encoding, sitting between the two plus-signs -->
+  <rect class="new" x="530" y="275" width="140" height="38"/>
+  <circle cx="551" cy="294" r="8" fill="none" stroke="#d81b7a" stroke-width="1.4"/>
+  <text x="551" y="298" class="pkb" text-anchor="middle">1</text>
+  <text x="608" y="298" class="tb" text-anchor="middle">Time encoding</text>
+
+  <!-- plus-sign A -->
+  <circle cx="600" cy="235" r="12" fill="#ffffff" stroke="#2a2a30" stroke-width="1.5"/>
+  <path d="M592,235 H608 M600,227 V243" stroke="#2a2a30" stroke-width="1.5"/>
+  <!-- plus-sign B -->
+  <circle cx="600" cy="353" r="12" fill="#ffffff" stroke="#2a2a30" stroke-width="1.5"/>
+  <path d="M592,353 H608 M600,345 V361" stroke="#2a2a30" stroke-width="1.5"/>
+
+  <!-- LayerNorm + key happens BEFORE time encoding is added, not after -->
+  <path class="arw" d="M520,235 H524"/>
+  <rect class="newin" x="524" y="224" width="58" height="22"/>
+  <text x="553" y="239" class="ts" text-anchor="middle">LN + key</text>
+  <path class="arw" d="M582,235 H585"/>
+
+  <path class="arw" d="M520,353 H524"/>
+  <rect class="newin" x="524" y="342" width="58" height="22"/>
+  <text x="553" y="357" class="ts" text-anchor="middle">LN + key</text>
+  <path class="arw" d="M582,353 H585"/>
+
+  <path class="arwp" d="M600,273 V249"/>
+  <path class="arwp" d="M600,315 V339"/>
+
+  <!-- lanes -> sequence -->
+  <path class="arw" d="M612,235 H726"/>
+  <path class="arw" d="M612,353 H726"/>
+  <path class="arw" d="M520,454 H660 V486 H726"/>
+
+  <!-- obb also gets LayerNorm + key before joining the sequence -->
+  <path d="M520,571 H556" fill="none" stroke="#2a2a30" stroke-width="1.7"/>
+  <rect class="newin" x="556" y="560" width="58" height="22"/>
+  <text x="585" y="575" class="ts" text-anchor="middle">LN + key</text>
+  <path d="M614,571 H660 V486" fill="none" stroke="#2a2a30" stroke-width="1.7"/>
+
+  <!-- ================= COLUMN 2 : the sequence ================= -->
+  <rect class="new" x="730" y="152" width="160" height="44"/>
+  <circle cx="756" cy="174" r="8" fill="none" stroke="#d81b7a" stroke-width="1.4"/>
+  <text x="756" y="178" class="pkb" text-anchor="middle">2</text>
+  <text x="800" y="179" class="tb" text-anchor="middle">[CLS]</text>
+
+  <rect class="box" x="730" y="212" width="160" height="46"/>
+  <text x="810" y="240" class="t" text-anchor="middle">video 30</text>
+  <rect class="box" x="730" y="258" width="160" height="32"/>
+  <text x="810" y="279" class="ts" text-anchor="middle">sep</text>
+  <rect class="box" x="730" y="290" width="160" height="132"/>
+  <text x="810" y="345" class="tb" text-anchor="middle">loc 30</text>
+  <text x="810" y="365" class="ts" text-anchor="middle" fill="#55555e">(joint: pos(i,j,k)</text>
+  <text x="810" y="380" class="ts" text-anchor="middle" fill="#55555e">per second)</text>
+  <rect class="box" x="730" y="422" width="160" height="32"/>
+  <text x="810" y="443" class="ts" text-anchor="middle">sep</text>
+  <rect class="box" x="730" y="454" width="160" height="64"/>
+  <text x="810" y="478" class="t" text-anchor="middle">env 4096</text>
+  <text x="810" y="500" class="t" text-anchor="middle">obb ≤ 250</text>
+
+  <rect class="box" x="730" y="536" width="160" height="28" fill="#dcdce1"/>
+  <text x="810" y="555" class="ts" text-anchor="middle">padding mask</text>
+
+  <path class="arw" d="M890,350 H946"/>
+
+  <!-- ================= COLUMN 3 : encoder ================= -->
+  <rect class="box" x="950" y="280" width="240" height="140"/>
+  <text x="1070" y="326" class="tb" text-anchor="middle">TransformerEncoder</text>
+  <text x="1070" y="348" class="t"  text-anchor="middle">2 layers,  8 heads</text>
+  <text x="1070" y="386" class="t"  text-anchor="middle">[L, B, 768]</text>
+
+  <!-- encoder -> m  (routed above the decoder, lands on m) -->
+  <path class="arw" d="M1070,278 V138 H1495 V194"/>
+  <text x="1266" y="130" class="tb" text-anchor="middle">m  [L, B, 768]</text>
+
+  <!-- ================= COLUMN 4 : voxel-query decoder ================= -->
+  <rect class="new" x="1250" y="160" width="325" height="680" fill="#fdf3f8" stroke-width="3"/>
+  <circle cx="1272" cy="180" r="9" fill="none" stroke="#d81b7a" stroke-width="1.5"/>
+  <text x="1272" y="184" class="pkb" text-anchor="middle">3</text>
+
+  <text x="1330" y="216" class="tb" text-anchor="middle">q</text>
+  <text x="1330" y="234" class="ts" text-anchor="middle">[4096, B, 768]</text>
+  <text x="1495" y="216" class="tb" text-anchor="middle">m</text>
+  <text x="1495" y="234" class="ts" text-anchor="middle">[L, B, 768]</text>
+
+  <rect class="newin" x="1268" y="252" width="128" height="34"/>
+  <text x="1332" y="274" class="t" text-anchor="middle">LayerNorm</text>
+  <rect class="newin" x="1432" y="252" width="128" height="34"/>
+  <text x="1496" y="274" class="t" text-anchor="middle">LayerNorm</text>
+
+  <path class="arw" d="M1330,240 V248"/>
+  <path class="arw" d="M1495,240 V248"/>
+
+  <rect class="newin" x="1268" y="332" width="292" height="60"/>
+  <text x="1414" y="358" class="tb" text-anchor="middle">MultiheadAttention,  8 heads</text>
+  <text x="1414" y="378" class="ts" text-anchor="middle">q is Q  ·  m is K and V</text>
+
+  <path class="arw" d="M1332,286 V330"/>
+  <text x="1344" y="312" class="tb">Q</text>
+  <path class="arw" d="M1466,286 V330"/>
+  <text x="1452" y="312" class="tb">K</text>
+  <path class="arw" d="M1528,286 V330"/>
+  <text x="1538" y="312" class="tb">V</text>
+
+  <path class="arw" d="M1414,392 V428"/>
+  <text x="1426" y="414" class="tb">attn_out</text>
+
+  <rect class="newin" x="1268" y="428" width="292" height="40"/>
+  <text x="1414" y="453" class="tb" text-anchor="middle">h  =  q + attn_out</text>
+  <path class="arw" d="M1414,468 V494"/>
+
+  <rect class="newin" x="1268" y="494" width="292" height="36"/>
+  <text x="1414" y="517" class="t" text-anchor="middle">LayerNorm</text>
+  <path class="arw" d="M1414,530 V556"/>
+
+  <rect class="newin" x="1268" y="556" width="292" height="52"/>
+  <text x="1414" y="578" class="tb" text-anchor="middle">Linear(768 → 1)</text>
+  <text x="1414" y="598" class="ts" text-anchor="middle">shared by all 4096 voxels</text>
+  <path class="arw" d="M1414,608 V634"/>
+
+  <rect class="newin" x="1268" y="634" width="292" height="38"/>
+  <text x="1414" y="658" class="t" text-anchor="middle">+  per-voxel bias</text>
+  <path class="arw" d="M1414,672 V698"/>
+
+  <rect class="newin" x="1268" y="698" width="292" height="36"/>
+  <text x="1414" y="721" class="t" text-anchor="middle">sigmoid</text>
+  <path class="arw" d="M1414,734 V760"/>
+
+  <rect class="newin" x="1268" y="760" width="292" height="38"/>
+  <text x="1414" y="784" class="tb" text-anchor="middle">[B, 4096]</text>
+
+  <!-- voxel_bias callout -->
+  <rect class="new" x="1600" y="600" width="200" height="90"/>
+  <circle cx="1620" cy="620" r="8" fill="none" stroke="#d81b7a" stroke-width="1.4"/>
+  <text x="1620" y="624" class="pkb" text-anchor="middle">4</text>
+  <text x="1636" y="624" class="pkb">--voxel_bias:</text>
+  <text x="1610" y="644" class="pk">factorised  48  (default)</text>
+  <text x="1610" y="662" class="pk">full  4096  (ablation)</text>
+  <text x="1610" y="680" class="pk">mlp  ~1.2k, tanh(x,y,z)</text>
+  <path d="M1598,653 H1564" fill="none" stroke="#d81b7a" stroke-width="1.4" marker-end="url(#ahp)"/>
+
+  <!-- output voxel grid -->
+  <path class="arw" d="M1562,779 H1634"/>
+  <g stroke="#4a4a52" stroke-width="1" fill="#e9e9ec">
+    <path d="M1640,750 H1730 V840 H1640 Z"/>
+    <path d="M1640,750 L1668,722 H1758 L1730,750 Z"/>
+    <path d="M1730,750 L1758,722 V812 L1730,840 Z"/>
+  </g>
+  <g stroke="#8a8a94" stroke-width="0.7" fill="none">
+    <path d="M1662,750 V840 M1685,750 V840 M1707,750 V840"/>
+    <path d="M1640,772 H1730 M1640,795 H1730 M1640,817 H1730"/>
+    <path d="M1668,722 L1640,750 M1690,722 L1662,750 M1713,722 L1685,750 M1735,722 L1707,750"/>
+    <path d="M1758,745 L1730,772 M1758,767 L1730,795 M1758,790 L1730,817"/>
+  </g>
+  <text x="1699" y="868" class="tb" text-anchor="middle">16 × 16 × 16</text>
+
+</svg>

@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Data and generated artifacts
+data/*
+!data/boxer_class_vocab.json
+
+# Analysis outputs. Every script under analysis/ writes its own results; all of
+# them are regenerable, and some are >10MB per file.
+analysis/out/
+analysis/**/out/
+
+# Job outputs / checkpoints. results/ reaches several GB per sweep.
+results/
+snapshots/
+out/
+err/
+
+# Local environment
+.venv/
+venv/
+*.egg-info/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
